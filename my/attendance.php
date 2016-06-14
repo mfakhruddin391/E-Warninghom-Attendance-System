@@ -1,4 +1,3 @@
-
 <?php
    include('../include/connect.php');
    global $DBCONNECT;
@@ -35,14 +34,11 @@
                  }
              } elseif ($Attandence == "Late") {
 				 $x2 = mysqli_query($_SESSION['Connect'],"INSERT INTO datelate (No_KP,DateLate) VALUES ('".$No_KPz."', '".date("d/m/Y")."')");
-				 if($x2){
-                 $x3 = mysqli_query($_SESSION['Connect'],"INSERT INTO dateattend (No_KP,DateAttend) VALUES ('".$No_KPz."','".date("d/m/Y")."')");
-				 }
-                 if($x3) {
-                 $layere2 = mysqli_query($_SESSION['Connect'],"UPDATE maklumat_pelajar SET Today_Attendence = 2 ,Total_Attend = Total_Attend + 1,Total_Late = Total_Late + 1 WHERE No_KP = '".$No_KP."'");
+                 if($x2) {
+                 $layere2 = mysqli_query($_SESSION['Connect'],"UPDATE maklumat_pelajar SET Today_Attendence = 2 ,Total_Attend = Total_Attend + 1,Total_Late = Total_Late + 1 WHERE No_KP = '".$No_KPz."'");
                      header("location: attendance");
                  }
-             } elseif ($Attandence = "Attend") {
+             } elseif ($Attandence == "Attend") {
 				 $x4 = mysqli_query($_SESSION['Connect'],"INSERT INTO dateattend (No_KP,DateAttend) VALUES ('".$No_KPz."','".date("d/m/Y")."')");
 				 if($x4){
                  $attend2 = mysqli_query($_SESSION['Connect'],"UPDATE maklumat_pelajar SET Today_Attendence = 0, Total_Attend = Total_Attend + 1 Where No_KP = '" . $No_KPz . "'");
